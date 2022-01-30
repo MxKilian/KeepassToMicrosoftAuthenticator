@@ -1,5 +1,5 @@
 import sys
-
+import os
 import pandas as pd
 from getpass import getpass
 from pykeepass import PyKeePass
@@ -40,6 +40,6 @@ for entry in db_entries:
     data.append([entry.title, entry.url, entry.username, entry.password])
 
 # Create CSV
-export_csv = r"C:\Users\M\Desktop\exported.csv"
+export_csv = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop') + '/exported.csv'
 data_frame = pd.DataFrame(data, columns=['name', 'url', 'username', 'password'])
 data_frame.to_csv(export_csv, sep=',', index=False, encoding='utf-8')
